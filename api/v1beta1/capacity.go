@@ -7,6 +7,10 @@ type CapacityData struct {
 
 // Count of accelerator types in the system
 type AcceleratorCount struct {
-	Type  string `json:"type"`  // name of accelerator type
-	Count int    `json:"count"` // number of available units
+	// +kubebuilder:validation:MinLength=1
+	Type string `json:"type"` // name of accelerator type
+
+	// +kubebuilder:default=0
+	// +kubebuilder:validation:Minimum=0
+	Count int `json:"count,omitempty"` // number of available units
 }
