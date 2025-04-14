@@ -6,4 +6,5 @@ Versioned API for the specifications of main resources
 - Models
 - Service classes
 - Servers
+- Capacity
 - Optimizer
