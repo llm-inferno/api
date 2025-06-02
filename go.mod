@@ -1,3 +1,3 @@
-module github.ibm.com/inferno/api
+module github.com/llm-inferno/api
 
 go 1.24.0
