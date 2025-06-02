@@ -1,0 +1,8 @@
+{
+    "optimizer": {
+        "unlimited": true,
+        "heterogeneous": false,
+        "milpSolver": false,
+        "useCplex": false
+    }
+}
