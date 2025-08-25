@@ -5,17 +5,22 @@ type ServiceClassData struct {
 	Spec []ServiceClassSpec `json:"serviceClasses"`
 }
 
-// Specifications of SLO data for a combination of a service class and a model
+// Specification of a service class
 type ServiceClassSpec struct {
 	// +kubebuilder:validation:MinLength=1
 	Name string `json:"name"` // service class name
 
+	// +kubebuilder:default=100
+	// +kubebuilder:validation:Minimum=0
+	Priority int `json:"priority"` // [1,100] priority (lower value is higher priority)
+
+	ModelTargets []ModelTarget `json:"modelTargets"` // target SLOs for models
+}
+
+// Specification of SLO targets for a model
+type ModelTarget struct {
 	// +kubebuilder:validation:MinLength=1
 	Model string `json:"model"` // model name
-
-	// +kubebuilder:default=0
-	// +kubebuilder:validation:Minimum=0
-	Priority int `json:"priority,omitempty"` // (non-negative) priority (lower value is higher priority)
 
 	SLO_ITL float32 `json:"slo-itl,omitempty"` // inter-token latency (msec)
 	SLO_TTW float32 `json:"slo-ttw,omitempty"` // request waiting time (msec)
