@@ -20,9 +20,8 @@ type ServiceClassSpec struct {
 // Specification of SLO targets for a model
 type ModelTarget struct {
 	// +kubebuilder:validation:MinLength=1
-	Model string `json:"model"` // model name
-
-	SLO_ITL float32 `json:"slo-itl,omitempty"` // inter-token latency (msec)
-	SLO_TTW float32 `json:"slo-ttw,omitempty"` // request waiting time (msec)
-	SLO_TPS float32 `json:"slo-tps,omitempty"` // throughput (tokens/sec)
+	Model    string  `json:"model"`              // model name
+	SLO_ITL  float32 `json:"slo-itl,omitempty"`  // inter-token latency (msec)
+	SLO_TTFT float32 `json:"slo-ttft,omitempty"` // time to first token, including queueing (msec)
+	SLO_TPS  float32 `json:"slo-tps,omitempty"`  // throughput (tokens/sec)
 }

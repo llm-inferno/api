@@ -11,3 +11,6 @@ const DefaultHighPriority int = 1
 
 // default priority of a service class (lowest)
 const DefaultServiceClassPriority int = DefaultLowPriority
+
+// default option for allocation under saturated condition
+var DefaultSaturatedAllocationPolicy SaturatedAllocationPolicy = None

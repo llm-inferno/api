@@ -3,6 +3,8 @@
         "unlimited": true,
         "heterogeneous": false,
         "milpSolver": false,
-        "useCplex": false
+        "useCplex": false,
+        "delayedBestEffort": false,
+        "saturationPolicy": "RoundRobin"
     }
 }

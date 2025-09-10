@@ -16,6 +16,10 @@ type ServerSpec struct {
 	// +kubebuilder:validation:MinLength=1
 	Model string `json:"model"` // model name
 
+	KeepAccelerator bool `json:"keepAccelerator"` // option to not change accelerator
+	MinNumReplicas  int  `json:"minNumReplicas"`  // minimum number of replicas
+	MaxBatchSize    int  `json:"maxBatchSize"`    // overriding value for the maximum batch size
+
 	CurrentAlloc AllocationData `json:"currentAlloc,omitempty"` // current allocation
 	DesiredAlloc AllocationData `json:"desiredAlloc,omitempty"` // desired allocation
 }
@@ -27,14 +31,13 @@ type AllocationData struct {
 	MaxBatch    int            `json:"maxBatch,omitempty"`    // max batch size
 	Cost        float32        `json:"cost,omitempty"`        // cost of allocation
 	ITLAverage  float32        `json:"itlAverage,omitempty"`  // average ITL
-	WaitAverage float32        `json:"waitAverage,omitempty"` // average wait time
+	TTFTAverage float32        `json:"ttftAverage,omitempty"` // average TTFT
 	Load        ServerLoadSpec `json:"load,omitempty"`        // server load statistics
 }
 
 // Specifications of server load statistics
 type ServerLoadSpec struct {
-	ArrivalRate float32 `json:"arrivalRate"`          // req/min
-	AvgLength   int     `json:"avgLength"`            // number of tokens
-	ArrivalCOV  float32 `json:"arrivalCOV,omitempty"` // coefficient of variation of inter-request arrival time
-	ServiceCOV  float32 `json:"serviceCOV,omitempty"` // coefficient of variation of request service time
+	ArrivalRate  float32 `json:"arrivalRate"`  // req/min
+	AvgInTokens  int     `json:"avgInTokens"`  // average number of input tokens
+	AvgOutTokens int     `json:"avgOutTokens"` // average number of output tokens
 }
